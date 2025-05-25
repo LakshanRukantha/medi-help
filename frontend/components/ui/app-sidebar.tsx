@@ -3,6 +3,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -24,14 +25,41 @@ import {
   BreadcrumbSeparator,
 } from "./breadcrumb";
 import { usePathname } from "next/navigation";
-import { HeartPulse, Syringe } from "lucide-react";
+import { Book, HeartPulse, Home, Syringe } from "lucide-react";
 
 const navItems = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+    isActive: true,
+  },
   {
     title: "Doctor Dashboard",
     url: "/dashboard",
     icon: Syringe,
     isActive: true,
+  },
+  {
+    title: "Appointments",
+    url: "/appointments",
+    icon: Book,
+    isActive: true,
+  },
+];
+const Doctor = [
+  {
+    id: "1",
+    name: "Chaminda",
+    email: "chaminda@example.com",
+    specialization: "Dental",
+  },
+];
+const Patient = [
+  {
+    id: "01",
+    name: "Sandaru",
+    email: "sandaru@example.com",
   },
 ];
 
@@ -88,6 +116,20 @@ export function AppSidebar({
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
+        {}
+        <SidebarFooter>
+          {pathName === "/" ? (
+            <div className="flex flex-col">
+              <h1 className="text-xl font-bold">{Patient[0].name}</h1>
+              <h1 className="text-l">{Patient[0].email}</h1>
+            </div>
+          ) : (
+            <div className="flex flex-col">
+              <h1 className="text-xl font-bold">{Doctor[0].name}</h1>
+              <h1 className="text-l">{Doctor[0].email}</h1>
+            </div>
+          )}
+        </SidebarFooter>
       </Sidebar>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
